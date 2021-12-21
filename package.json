@@ -1,0 +1,33 @@
+{
+  "name": "scoreloader-api",
+  "version": "1.0.0",
+  "description": "api server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mugju/scoreloader-api.git"
+  },
+  "author": "DongD",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mugju/scoreloader-api/issues"
+  },
+  "homepage": "https://github.com/mugju/scoreloader-api#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.2",
+    "express-session": "^1.17.2",
+    "morgan": "^1.10.0",
+    "mysql2": "^2.3.3",
+    "nunjucks": "^3.2.3",
+    "passport": "^0.5.2",
+    "passport-local": "^1.0.0",
+    "sequelize": "^6.12.1",
+    "uuid": "^8.3.2"
+  }
+}
