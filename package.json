@@ -26,8 +26,13 @@
     "mysql2": "^2.3.3",
     "nunjucks": "^3.2.3",
     "passport": "^0.5.2",
+    "passport-kakao": "^1.0.1",
     "passport-local": "^1.0.0",
+    "passport-naver": "^1.0.6",
     "sequelize": "^6.12.1",
     "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "chokidar": "^3.5.2"
   }
 }
