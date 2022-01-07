@@ -10,10 +10,15 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
+
+
+
 const authRouter = require("./routes/auth");
 const indexRouter = require("./routes");
 const {sequelize} = require("./models");
 const passportConfig = require('./passport');
+//api 토큰 발급
+const api_v1 = require('./routes/api_v1');
 
 const app = express();
 passportConfig();
@@ -57,6 +62,8 @@ app.use(passport.session());
 app.use('/auth',authRouter);
 app.use('/',indexRouter);
 
+app.use('/api_v1',api_v1);
+
 app.use((req,res,next) =>{
     const error  = new Error(`${req.method} ${req.url}`);
     error.status = 404;
@@ -70,6 +77,7 @@ app.use((err,req,res,next)=>{
     res.status(err.status || 500);
     res.render('error');
 });
+
 
 app.listen(app.get('port'), ()=>{
     console.log(app.get('port'),'번 포트 오픈');
