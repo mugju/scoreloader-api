@@ -53,6 +53,29 @@ router.get('/test', verifyToken, (req,res) =>{
 
 router.get('/posts/hashtag/:title', verifyToken, async (req,res)=>{
     const hash_result = await Hashtag.findOne({ where : {title : req.params.title}})
+    try{
+        if(!hash_result){
+            return res.status(404).json({
+                code : 404,
+                message : "검색결과가 없습니다.",
+            });
+        }
+        const post = await hash_result.getPosts(); //get  + 모델의 복수형?
+
+        return res.status(200).json({       //restful 구성요소
+            code : 200,
+            payload : post, 
+        });
+
+
+    } catch(err){
+        console.error(err);
+        return res.status(503).json({
+            code : 503,
+            message : "Server Error",
+        })
+
+    }
 })
 
 module.exports = router;
