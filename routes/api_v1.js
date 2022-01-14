@@ -7,7 +7,7 @@ const {Domain, User, Post, Hashtag} = require('../models');
 
 const router = express.Router();
 
-router.post('/token', async(req,res)=>{
+router.post('/token', async (req, res)=>{
     const {clientSecret} = req.body;
     try{
         const domain = await Domain.findOne({
@@ -17,7 +17,8 @@ router.post('/token', async(req,res)=>{
                 attribute : ['nick','id'],
             },
         });
-        
+        // 여기까진 돌아
+        console.log(domain); // 쿼리결과 확인 문제가 있나 없나.. 쿼리는 잘 돌고.
         if (!domain){
             return res.status(401).json({
                 code : 401,
@@ -28,22 +29,23 @@ router.post('/token', async(req,res)=>{
             id : domain.User.id,
             nick : domain.User.nick,
         }, process.env.JWT_SECRET, {    //https://www.npmjs.com/package/jsonwebtoken
-            exprireIn : "7d",
+            expiresIn : "7d",
             issuer : 'admin',
         });
-
+        console.log('이거 찍히면 정상적으로 도는겁니다.');
+        console.log(token);
         return res.json({
             code : 200,
             message : '토큰이 정상적으로 발행되었습니다',
+            token,
         });
 
     } catch(err){
+        console.error(err); //이 코드 하나 안넣어서 개고생.. 이쪽은 고쳤고..
         return res.status(500).json({
             code : 500,
             message : 'Server Error'
         });
-        
-
     }
 });
 

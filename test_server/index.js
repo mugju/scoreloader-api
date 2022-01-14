@@ -41,7 +41,7 @@ app.use('/', pageRouter);
 
 app.use((req,res,next)=>{
     const error = new Error(`${req.method} ${req.url} Non Router.`);
-    error.status(404);
+    error.status = 404;
     next(error);
 });
 
@@ -50,10 +50,7 @@ app.use((err,req,res,next)=>{
     res.locals.error = process.env.NODE_ENV !== 'production' ? err : {};
     res.status(err.status || 500);
     
-    res.render('error',{
-        err_message : err.message,
-        error_status : 'error? 몰루'
-    });
+    res.render('error');
     
 });
 

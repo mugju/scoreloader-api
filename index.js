@@ -18,7 +18,7 @@ const indexRouter = require("./routes");
 const {sequelize} = require("./models");
 const passportConfig = require('./passport');
 //api 토큰 발급
-const api_v1 = require('./routes/api_v1');
+const v1 = require('./routes/api_v1');
 
 const app = express();
 passportConfig();
@@ -62,7 +62,7 @@ app.use(passport.session());
 app.use('/auth',authRouter);
 app.use('/',indexRouter);
 
-app.use('/api_v1',api_v1);
+app.use('/v1',v1);
 
 app.use((req,res,next) =>{
     const error  = new Error(`${req.method} ${req.url}`);
